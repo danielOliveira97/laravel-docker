@@ -5,15 +5,16 @@ services:
     build: .
     container_name: app
     restart: always 
-    entrypoint: dockerize -template .docker/app/.env:.env -wait tcp://db:3306 -timeout 40s ./.docker/app/entrypoint.sh  
-    environment:
-      - DB_HOST=db
-      - DB_PORT=3306
-      - DB_DATABASE=laravel
-      - DB_USERNAME=root
-      - DB_PASSWORD=root
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
+    # entrypoint: dockerize -template .docker/app/.env:.env -wait tcp://db:3306 -timeout 40s ./.docker/app/entrypoint.sh
+    entrypoint: ./.docker/app/entrypoint.sh  
+    # environment:
+    #   - DB_HOST=db
+    #   - DB_PORT=3306
+    #   - DB_DATABASE=laravel
+    #   - DB_USERNAME=root
+    #   - DB_PASSWORD=root
+    #   - REDIS_HOST=redis
+    #   - REDIS_PORT=6379
     tty: true
     volumes:
       - .:/var/www/
